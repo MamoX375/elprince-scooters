@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="معرض البرنس - أقوى سكوترات في مصر مع مساعد AI متخصص في الاسكوترات وبيانات المعرض." />
+  <title>معرض البرنس</title>
+  <style>
+    :root {
+      --p: #ff5722;
+      --s: #00e676;
+      --bg: #0a0a0f;
+      --c: #151824;
+      --ai3: #7c4dff;
+      --ai4: #00d4ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: radial-gradient(circle at top, #151521 0%, var(--bg) 55%);
+      color: #fff;
+      text-align: center;
+      padding-bottom: 90px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0d0f16, #191428);
+      padding: 25px;
+      border-bottom: 4px solid var(--p);
+      box-shadow: 0 8px 25px rgba(0,0,0,.35);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: var(--p);
+      text-shadow: 0 0 12px rgba(255,87,34,.35);
+    }
+
+    .sub {
+      color: #cfcfcf;
+      margin: 5px 0;
+      display: block;
+      font-size: 1.1rem;
+    }
+
+    .mng {
+      display: inline-block;
+      padding: 6px 15px;
+      background: rgba(255, 87, 34, 0.12);
+      border: 1px solid rgba(255, 87, 34, 0.25);
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .intro {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(21, 24, 36, 0.95);
+      border-radius: 14px;
+      border-left: 5px solid var(--s);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 520px;
+      margin: 15px auto 0;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      outline: none;
+      background: #0f131a;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .count {
+      margin-top: 10px;
+      color: #bbb;
+      font-size: 0.95rem;
+    }
+
+    .fltr-box {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    .f-btn,
+    .ai-btn,
+    .q-btn {
+      color: #fff;
+      border: 1px solid #333;
+      padding: 8px 14px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: .2s;
+    }
+
+    .f-btn { background: #252b36; }
+
+    .f-btn:hover,
+    .f-btn.active {
+      background: var(--p);
+      border-color: var(--p);
+      transform: translateY(-2px);
+    }
+
+    .ai-btn {
+      background: linear-gradient(135deg, var(--ai3), var(--ai4));
+      border-color: rgba(255,255,255,.08);
+      box-shadow: 0 0 18px rgba(124, 77, 255, .35);
+    }
+
+    .ai-btn:hover,
+    .q-btn:hover { transform: translateY(-2px) scale(1.02); }
+
+    .q-btn {
+      background: #1e2433;
+      border-color: #2d3550;
+      margin: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .box {
+      background: var(--c);
+      border-radius: 12px;
+      padding: 15px;
+      border: 1px solid #222;
+      cursor: pointer;
+      transition: 0.2s;
+      overflow: hidden;
+    }
+
+    .box:hover {
+      transform: translateY(-3px);
+      border-color: var(--p);
+    }
+
+    .logo {
+      width: 100%;
+      height: 120px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: #fff;
+      border: 1px solid #2a2f44;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .logo.zon { color: #ff5722; }
+    .logo.kew { color: #00e676; }
+    .logo.ele { color: #00e5ff; }
+    .logo.sym { color: #00b0ff; }
+    .logo.ben { color: #ea1e63; }
+
+    .lbl {
+      font-size: 1.3rem;
+      font-weight: 900;
+      background: #111;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .l-zon { color: #ff5722; }
+    .l-kew { color: #00e676; }
+    .l-ele { color: #00e5ff; }
+    .l-sym { color: #00b0ff; }
+    .l-ben { color: #ea1e63; }
+
+    .box h3 { margin: 8px 0; font-size: 1.1rem; }
+    .box p { color: #aaa; font-size: 0.85rem; margin: 0; }
+
+    .cnt {
+      background: #0e1118;
+      padding: 25px 15px;
+      margin-top: 30px;
+      border-top: 4px solid var(--s);
+    }
+
+    .card {
+      max-width: 450px;
+      margin: 0 auto;
+      background: var(--c);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #222;
+    }
+
+    .row { margin: 10px 0; font-size: 1rem; }
+
+    .btn-g {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .b-wa { background: #25d366; }
+    .b-ph { background: var(--p); }
+
+    .float-bar {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 15, 0.95);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 6px 15px;
+      border-radius: 30px;
+      display: flex;
+      gap: 10px;
+      box-shadow: 0 4px 18px #000;
+      z-index: 999;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .fl-l {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+    }
+
+    .mdl,
+    .aim {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,.82);
+      backdrop-filter: blur(4px);
+    }
+
+    .mdl-c,
+    .ai-c {
+      background: linear-gradient(180deg, #171a27, #0f1220);
+      margin: 5% auto;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,.08);
+      width: 90%;
+      max-width: 500px;
+      border-radius: 14px;
+      text-align: right;
+      max-height: 80vh;
+      overflow-y: auto;
+      animation: pop .2s ease-in-out;
+      box-shadow: 0 0 30px rgba(0,0,0,.45);
+    }
+
+    .ai-c { border-color: rgba(124, 77, 255, .4); }
+
+    @keyframes pop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .cls {
+      color: #aaa;
+      float: left;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .cls:hover { color: var(--p); }
+
+    .m-item,
+    .ai-answer {
+      background: #10131c;
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 8px;
+      border-right: 4px solid var(--s);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .ai-answer {
+      border-right-color: var(--ai4);
+      min-height: 50px;
+      white-space: pre-wrap;
+    }
+
+    .ai-input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #2a2f44;
+      background: #0b0e17;
+      color: #fff;
+      outline: none;
+    }
+
+    .ai-send {
+      width: 100%;
+      padding: 10px;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--ai3), var(--ai4));
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .toast {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 20px;
+      z-index: 10000;
+      display: none;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+  </style>
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+
+  <header>
+    <h1>معرض البرنس</h1>
+    <span class="sub">أقوى تشكيلة سكوترات في مصر وأضمن مركز صيانة</span>
+    <div class="mng">بإدارة الأستاذ: رامي محمد البرنس</div>
+  </header>
+
+  <section class="intro">
+    <h2>يا هلا بك في صرح البرنس المتكامل! 👋</h2>
+    <p>
+      عايز تركب سكوتر ومحتار؟ في <strong>معرض البرنس</strong> هتعرف يعني إيه ركوبة بجد!
+      بنوفر لك أقوى براندات السكوترات المعتمدة والكهربائية الاعتمادية وبحالة الفبريقة،
+      عندنا مركز صيانة وحش مجهز بأحدث الأجهزة وفنيين عتاولة هيظبطوا لك السكوتر بتاعك
+      ويرجعوه زيرو، مع توفير قطع الغيار الأصلية وبأقل سعر في مصر!
+    </p>
+
+    <input id="search" class="search-box" type="text" placeholder="ابحث عن موديل أو قسم..." oninput="searchCards()" />
+    <div id="count" class="count"></div>
+
+    <div class="fltr-box">
+      <button class="f-btn active" onclick="fltr('all', this)">عرض الكل 🛒</button>
+      <button class="f-btn" onclick="fltr('zon', this)">زنتوس</button>
+      <button class="f-btn" onclick="fltr('kew', this)">كيواي</button>
+      <button class="f-btn" onclick="fltr('ele', this)">سكوترات كهربائية</button>
+      <button class="f-btn" onclick="fltr('sym', this)">SYM</button>
+      <button class="f-btn" onclick="fltr('ben', this)">بنيللي</button>
+      <button class="ai-btn" onclick="openAI()">AI 🤖</button>
+    </div>
+  </section>
+
+  <main class="grid" id="grid">
+    <div class="box" data-cat="zon" onclick="shw('zon')">
+      <div class="logo zon">ZONTES</div>
+      <div class="lbl l-zon">ZONTES</div>
+      <h3>سكوترات زنتوس</h3>
+      <p>وحش الطريق الذكي! اضغط هنا لمشاهدة الموديلات والأمثلة.</p>
+    </div>
+
+    <div class="box" data-cat="kew" onclick="shw('kew')">
+      <div class="logo kew">KEEWAY</div>
+      <div class="lbl l-kew">KEEWAY</div>
+      <h3>سكوترات كيواي</h3>
+      <p>حمال قاسية وموفر للبنزين! اضغط هنا لمشاهدة الموديلات والأمثلة.</p>
+    </div>
+
+    <div class="box" data-cat="ele" onclick="shw('ele')">
+      <div class="logo ele">ELECTRIC</div>
+      <div class="lbl l-ele">ELECTRIC</div>
+      <h3>سكوترات كهربائية اعتمادية</h3>
+      <p>مستقبل الركوب الموفر بدون بنزين! اضغط هنا لمشاهدة الموديلات والأمثلة الكهربائية.</p>
+    </div>
+
+    <div class="box" data-cat="sym" onclick="shw('sym')">
+      <div class="logo sym">SYM</div>
+      <div class="lbl l-sym">SYM</div>
+      <h3>سكوترات SYM</h3>
+      <p>الأشهر في الشارع وموفرة! اضغط هنا لمشاهدة الموديلات والأمثلة.</p>
+    </div>
+
+    <div class="box" data-cat="ben" onclick="shw('ben')">
+      <div class="logo ben">BENELLI</div>
+      <div class="lbl l-ben">BENELLI</div>
+      <h3>سكوترات بنيللي</h3>
+      <p>الشياكة والأداء الإيطالي! اضغط هنا لمشاهدة الموديلات والأمثلة.</p>
+    </div>
+  </main>
+
+  <div class="float-bar">
+    <a href="https://wa.me" target="_blank" class="fl-l b-wa" onclick="toastMsg('فتح واتساب')">واتساب 💬</a>
+    <a href="tel:01155006969" class="fl-l b-ph" onclick="toastMsg('جارٍ الاتصال')">اتصال 📞</a>
+  </div>
+
+  <section class="cnt">
+    <div class="card">
+      <div class="row">📍 <strong>العنوان:</strong> حسن رضوان - بجوار هريدي</div>
+      <div class="row">👤 <strong>الإدارة:</strong> أ / رامي محمد البرنس</div>
+      <div class="row">📞 <strong>تليفون المعرض:</strong> 01155006969</div>
+      <div class="btn-g">
+        <a href="https://wa.me" target="_blank" class="btn b-wa" onclick="toastMsg('تم فتح واتساب')">ابعت رسالة واتساب 💬</a>
+        <a href="tel:01155006969" class="btn b-ph" onclick="toastMsg('جارٍ الاتصال بالمعرض')">رن اتصال تليفوني مباشر 📞</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 معرض البرنس لسكوترات أبو حوا والكهرباء</p>
+  </footer>
+
+  <div id="mdl" class="mdl">
+    <div class="mdl-c">
+      <span class="cls" onclick="cls()">&times;</span>
+      <h3 id="m-tit" style="color: var(--p); text-align: center;"></h3>
+      <div id="m-bod"></div>
+    </div>
+  </div>
+
+  <div id="aim" class="aim">
+    <div class="ai-c">
+      <span class="cls" onclick="closeAI()">&times;</span>
+      <h3 style="color: var(--ai4); text-align: center;">AI</h3>
+      <p style="color:#aaa; margin-top:-4px;">مساعد مستقل متخصص في الاسكوترات وبيانات المعرض</p>
+      <div style="margin-bottom:10px;">
+        <button class="q-btn" onclick="quickAsk('مين المدير؟')">مين المدير؟</button>
+        <button class="q-btn" onclick="quickAsk('مكان المعرض فين؟')">مكان المعرض</button>
+        <button class="q-btn" onclick="quickAsk('رقم التليفون كام؟')">رقم التليفون</button>
+        <button class="q-btn" onclick="quickAsk('أنواع الاسكوترات المتوفرة؟')">الأنواع</button>
+      </div>
+      <input id="aiQ" class="ai-input" type="text" placeholder="اكتب سؤالك هنا..." />
+      <button class="ai-send" onclick="askAI()">إرسال</button>
+      <div id="aiA" class="ai-answer"></div>
+    </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.box');
+    const count = document.getElementById('count');
+    function updateCount() {
+      const visible = [...cards].filter(c => c.style.display !== 'none').length;
+      if(count) count.innerText = `عدد الأقسام الظاهرة: ${visible}`;
+    }
+    function toastMsg(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.style.display = 'block';
+      clearTimeout(window.tt);
+      window.tt = setTimeout(() => t.style.display = 'none', 1500);
+    }
+    function fltr(b, btn) {
+      document.querySelectorAll('.f-btn').forEach(x => x.classList.remove('active'));
+      btn.classList.add('active');
+      cards.forEach(c => {
+        const cat = c.getAttribute('data-cat');
+        c.style.display = (b === 'all' || cat === b) ? 'block' : 'none';
+      });
+      updateCount();
+      toastMsg('تم تطبيق الفلتر');
+    }
+    function searchCards() {
+      const q = document.getElementById('search').value.toLowerCase().trim();
+      cards.forEach(c => {
+        const text = c.innerText.toLowerCase();
+        c.style.display = text.includes(q) ? 'block' : 'none';
+      });
+      updateCount();
+    }
+    const data = {
+      zon: { t: "موديلات زنتوس (Zontes)", i: ["1. Zontes ZT310M", "2. Zontes ZT350E", "3. Zontes ZT350D", "4. Zontes ZT155"] },
+      kew: { t: "موديلات كيواي (Keeway)", i: ["1. Keeway Vieste 200", "2. Keeway Vieste 300", "3. Keeway Cityblade 150", "4. Keeway Zahara 125"] },
+      ele: { t: "سكوترات كهربائية اعتمادية", i: ["1. سكوتر VTR الكهربائي", "2. Keeway Volt-way", "3. موديلات بقوة 2000 وات", "4. الموديلات الذكية الاقتصادية"] },
+      sym: { t: "موديلات إس واي إم (SYM)", i: ["1. SYM Symphony ST", "2. SYM Symphony SR", "3. SYM Symphony S", "4. SYM Jet X 150"] },
+      ben: { t: "موديلات بنيللي (Benelli)", i: ["1. Benelli Caffenero Sport", "2. Benelli Caffenero Classic", "3. Benelli Zenzero 150", "4. Benelli Pepe"] }
+    };
+    function shw(b) {
+      toastMsg('تم فتح القسم');
+      document.getElementById('m-tit').innerText = data[b].t;
+      document.getElementById('m-bod').innerHTML = data[b].i.map(item => `<div class="m-item">${item}</div>`).join('');
+      document.getElementById('mdl').style.display = "block";
+    }
+    function cls() { document.getElementById('mdl').style.display = "none"; }
+    function openAI() {
+      document.getElementById('aim').style.display = "block";
+      document.getElementById('aiQ').focus();
+      document.getElementById('aiA').innerHTML = 'AI جاهز. اسأل عن الاسكوترات، الإدارة، العنوان، الرقم، الصيانة، أو أي تفاصيل تخص المعرض.';
+    }
+    function closeAI() { document.getElementById('aim').style.display = "none"; }
+    function quickAsk(text) { document.getElementById('aiQ').value = text; askAI(); }
+    function askAI() {
+      const q = document.getElementById('aiQ').value.trim().toLowerCase();
+      const out = document.getElementById('aiA');
+      if (!q) { out.innerHTML = 'اكتب سؤالك الأول.'; return; }
+      let ans = 'أنا متخصص في الاسكوترات فقط، لكن أقدر أجاوبك عن الموديلات، الصيانة، العنوان، الرقم، والمدير.';
+      if (q.includes('كيواي') || q.includes('kew')) ans = 'قسم كيواي فيه: Vieste 200 وVieste 300 وCityblade 150 وZahara 125.';
+      else if (q.includes('زنتوس') || q.includes('zontes')) ans = 'قسم زنتوس فيه: ZT310M وZT350E وZT350D وZT155.';
+      else if (q.includes('كهرب')) ans = 'القسم الكهربائي فيه: VTR الكهربائي وKeeway Volt-way وموديلات 2000 وات.';
+      else if (q.includes('sym')) ans = 'قسم SYM فيه: Symphony ST وSymphony SR وSymphony S وJet X 150.';
+      else if (q.includes('بنيللي') || q.includes('benelli')) ans = 'قسم بنيللي فيه: Caffenero Sport وCaffenero Classic وZenzero 150 وPepe.';
+      else if (q.includes('عنوان') || q.includes('فين') || q.includes('مكان')) ans = 'العنوان: حسن رضوان - بجوار هريدي.';
+      else if (q.includes('رقم') || q.includes('تليفون') || q.includes('موبايل')) ans = 'رقم المعرض: 01155006969.';
+      else if (q.includes('مدير') || q.includes('الإدارة') || q.includes('المدير')) ans = 'مدير المعرض هو: أ / رامي محمد البرنس.';
+      else if (q.includes('صيانة')) ans = 'المعرض فيه مركز صيانة وقطع غيار أصلية وخدمة سريعة.';
+      else if (q.includes('أفضل') || q.includes('ترشح') || q.includes('أنصح')) ans = 'لو عايز ترشيح سريع: كيواي للمشاوير العملية، زنتوس للأداء، SYM للثبات، بنيللي للشياكة، والكهربائي للتوفير.';
+      else if (q.includes('استهلاك') || q.includes('بنزين')) ans = 'في الاسكوترات، الاستهلاك يختلف حسب السعة وطريقة السواقة وحالة الموتور والصيانة.';
+      else if (q.includes('بطارية') || q.includes('شحن')) ans = 'في الكهربائي، البطارية أهم جزء ولازم تتراجع دوريًا، والشحن يعتمد على نوع البطارية والموديل.';
+      else if (q.includes('سرعة') || q.includes('أسرع')) ans = 'السرعة تختلف حسب السعة، الوزن، والطريق. لو عايز أداء أعلى اسألني عن الموديلات الأقوى.';
+      else if (q.includes('سكوتر') || q.includes('اسكوتر')) ans = 'اسألني عن أي ماركة أو موديل أو صيانة أو شراء أو مقارنة، وأنا أساعدك.';
+      out.innerHTML = ans;
+      toastMsg('AI رد على السؤال');
+    }
+    window.onclick = function (e) {
+      if (e.target == document.getElementById('mdl')) cls();
+      if (e.target == document.getElementById('aim')) closeAI();
+    };
+    updateCount();
+  </script>
+</body>
+</html>
